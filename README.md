@@ -9,12 +9,13 @@
 
 ###### Usage notes for npm
 * Run `npm install pkg-name` to install dependencies for SMPP.
+>Run `ng add pkg-name` to add dependencies to the project.
 * Run `npm update` to automatically update and install all dependencies (even missing ones) for SMPP.
 
 # Development Notes
 ## 1. [Angular Development](https://angular.io)
 ### Development Server
-Run `ng serve` from the root folder of the SMPP project in a terminal to launch a local development server. Navigate to `http://localhost:4200/` in your browser (Google Chrome preferred) to view the app. Changing source files while running a development server will automatically reload the app with new changes.
+Run `ng serve` from the `../smpp/` folder of the SMPP project in a terminal to launch a local development server. Navigate to `http://localhost:4200/` in your browser (Google Chrome preferred) to view the app. Changing source files while running a development server will automatically reload the app with new changes.
 > Running `ng serve --open` will automatically open the development server in a browser window. You will automatically be routed to `http://localhost:4200/`.
 
 ### Generating Components
