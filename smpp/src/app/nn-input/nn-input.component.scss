@@ -1,0 +1,30 @@
+.input-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // width: 250px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: auto;
+}
+
+.input-element-group {
+  display: flex;
+  flex-direction: row;
+  // width: inherit;
+  padding-left: 10px;
+  padding-right: 15px;
+}
+
+.padded {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  padding: 30px;
+}
