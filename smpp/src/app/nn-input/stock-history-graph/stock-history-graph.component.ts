@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stock-history-graph',
@@ -6,10 +6,10 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./stock-history-graph.component.scss']
 })
 export class StockHistoryGraphComponent implements OnInit, OnChanges {
-  private _symbol = '';
-
   @Input() symbol: string;
 
+  // Google Charts Attributes
+  google_chart_type = 'LineChart';
   title = 'Stock Performance Data For ' + (this.symbol || 'SSMP');
   type = 'LineChart';
   columnNames = [this.symbol, 'Time', 'Value ($ USD)'];
