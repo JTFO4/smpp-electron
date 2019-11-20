@@ -20,7 +20,12 @@ import { NnInputComponent } from './nn-input/nn-input.component';
 import { StockHistoryGraphComponent } from './nn-input/stock-history-graph/stock-history-graph.component';
 
 @NgModule({
-  declarations: [AppComponent, NnInputComponent, StockHistoryGraphComponent],
+  declarations: [
+    AppComponent,
+    NnInputComponent,
+    StockGraphComponent,
+    EsOutputComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
