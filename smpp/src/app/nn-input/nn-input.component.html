@@ -1,0 +1,58 @@
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+<div class="padded">
+  <mat-card class="input-card">
+    <mat-card-header>
+      <mat-card-title>Welcome to SMPP!</mat-card-title>
+      <mat-card-subtitle>Enter your stock query below.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <form
+          class="form-container"
+          [formGroup]="query_params"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="input-element-group">
+            <mat-icon style="padding-right: 15px; padding-top:15px"
+              >timeline</mat-icon
+            >
+            <mat-form-field>
+              <input
+                matInput
+                formControlName="stock_symbol"
+                required
+                placeholder="Input stock symbol..."
+              />
+            </mat-form-field>
+          </div>
+          <div class="input-element-group">
+            <mat-icon style="padding-right: 15px; padding-top:15px"
+              >attach_money</mat-icon
+            >
+            <mat-form-field>
+              <input
+                matInput
+                formControlName="investment_amount"
+                type="number"
+                required
+                placeholder="Input investment amount..."
+              />
+            </mat-form-field>
+          </div>
+          <div class="input-element-group">
+            <button mat-raised-button color="primary" type="submit">
+              Analyze
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <app-stock-history-graph
+    style="padding-left: 30px;"
+    [symbol]="symbol"
+  ></app-stock-history-graph>
+</div>
