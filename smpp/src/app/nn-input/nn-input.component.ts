@@ -10,7 +10,7 @@ import { ApiInterfaceService } from '../api-interface.service';
 })
 export class NnInputComponent implements OnInit {
   symbol = '';
-  stock_performance_data: JSON;
+  stock_performance_data;
 
   query_params = new FormGroup({
     stock_symbol: new FormControl(''),
@@ -27,7 +27,7 @@ export class NnInputComponent implements OnInit {
       'TIME_SERIES_DAILY',
       this.symbol,
       'full',
-      'JSON'
+      'csv'
     );
   }
 }

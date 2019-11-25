@@ -12,7 +12,8 @@ export class ApiInterfaceService {
     for (const key in data) {
       if (key === 'Time Series (Daily)') {
         return data[key];
-      }2
+      }
+      2;
     }
   }
 
@@ -53,7 +54,7 @@ export class ApiInterfaceService {
     };
     ping.onload = () => {
       console.log('Ping success!');
-      api_response = JSON.parse(ping.response);
+      api_response = ping.response;
       console.log(this.get_time_series_JSON(api_response));
     };
     ping.send();
