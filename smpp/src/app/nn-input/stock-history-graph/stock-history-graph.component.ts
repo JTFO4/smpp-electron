@@ -7,14 +7,16 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class StockHistoryGraphComponent implements OnInit, OnChanges {
   @Input() symbol: string;
+  @Input() stock_performance_data: JSON;
 
   // Google Charts Attributes
   google_chart_type = 'LineChart';
   title = 'Stock Performance Data For ' + (this.symbol || 'SSMP');
   type = 'LineChart';
-  columnNames = [this.symbol, 'Time', 'Value ($ USD)'];
+  columnNames = [];
   data = [];
-  height = 210;
+  height = 250;
+  width = 700;
 
   constructor() {
     const today = new Date();

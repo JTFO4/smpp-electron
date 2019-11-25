@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { MatSelect } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+
+import { ApiInterfaceService } from '../api-interface.service';
 
 @Component({
   selector: 'app-nn-input',
@@ -9,19 +10,24 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class NnInputComponent implements OnInit {
   symbol = '';
+  stock_performance_data: JSON;
 
   query_params = new FormGroup({
     stock_symbol: new FormControl(''),
     investment_amount: new FormControl('')
   });
 
-  constructor() {}
+  constructor(private api: ApiInterfaceService) {}
 
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.query_params.value);
     this.symbol = this.query_params.get('stock_symbol').value;
-    console.log(this.symbol);
+    this.stock_performance_data = this.api.pull_data(
+      'TIME_SERIES_DAILY',
+      this.symbol,
+      'full',
+      'JSON'
+    );
   }
 }
