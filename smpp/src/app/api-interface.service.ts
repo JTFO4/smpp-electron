@@ -51,8 +51,6 @@ export class ApiInterfaceService {
     ping.onload = () => {
       console.log('Ping success!');
       api_response = ping.response;
-      // console.log(api_response);
-      console.log(JSON.parse(api_response));
     };
     ping.send();
 

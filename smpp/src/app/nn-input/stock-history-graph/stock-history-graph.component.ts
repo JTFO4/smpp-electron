@@ -80,9 +80,6 @@ export class StockHistoryGraphComponent implements OnInit, OnChanges {
         });
       }
     }
-    // console.log(time_series_data);
-    // this.chart.options.data = time_series_data;
     this.chart.render();
-    console.log('rendered');
   }
 }
