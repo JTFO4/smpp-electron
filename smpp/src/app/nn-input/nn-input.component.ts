@@ -33,5 +33,6 @@ export class NnInputComponent implements OnInit {
         this.charting.symbol = this.symbol;
         this.charting.checkData();
       });
+    this.api.flask_ping();
   }
 }

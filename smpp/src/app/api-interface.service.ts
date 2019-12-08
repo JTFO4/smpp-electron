@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { resolve } from 'url';
 
@@ -6,8 +7,9 @@ import { resolve } from 'url';
 })
 export class ApiInterfaceService {
   private api_key = '4J799EXIEU5AC8XK';
+  backend_response: JSON;
 
-  constructor() {}
+  constructor(private backend: HttpClient) {}
 
   get_time_series_JSON(data: JSON) {
     for (const key in data) {
@@ -58,6 +60,13 @@ export class ApiInterfaceService {
       setTimeout(() => {
         resolve(api_response);
       }, 3000);
+    });
+  }
+
+  flask_ping() {
+    this.backend.get('http://127.0.0.1:5002/').subscribe(data => {
+      this.backend_response = data as JSON;
+      console.log(this.backend_response);
     });
   }
 }

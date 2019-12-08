@@ -1,4 +1,5 @@
 import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -31,6 +32,7 @@ import { PredictionsOutputComponent } from './predictions-output/predictions-out
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     GoogleChartsModule.forRoot(),
     MatButtonModule,
     MatCardModule,
