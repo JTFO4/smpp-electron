@@ -7,6 +7,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatProgressBarModule,
   MatSelectModule,
   MatToolbarModule,
 } from '@angular/material';
@@ -29,6 +30,7 @@ import { StockHistoryGraphComponent } from './nn-input/stock-history-graph/stock
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatProgressBarModule,
     MatSelectModule,
     MatToolbarModule,
     LayoutModule,

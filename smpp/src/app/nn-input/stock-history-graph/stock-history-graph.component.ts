@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import * as CanvasJS from 'node_modules/canvasjs-2.3.2/canvasjs.min';
 
 @Component({
   selector: 'app-stock-history-graph',
@@ -6,15 +7,18 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./stock-history-graph.component.scss']
 })
 export class StockHistoryGraphComponent implements OnInit, OnChanges {
-  private _symbol = '';
+  @Input() symbol = 'SMPP';
+  @Input() stock_performance_data;
+  private chart;
 
-  @Input() symbol: string;
-
-  title = 'Stock Performance Data For ' + (this.symbol || 'SSMP');
+  // Google Charts Attributes
+  google_chart_type = 'LineChart';
+  title = 'Stock Performance Data For ' + (this.symbol || 'SMPP');
   type = 'LineChart';
-  columnNames = [this.symbol, 'Time', 'Value ($ USD)'];
+  columnNames = [];
   data = [];
-  height = 210;
+  height = 250;
+  width = 700;
 
   constructor() {
     const today = new Date();
@@ -25,9 +29,65 @@ export class StockHistoryGraphComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const dataPoints = [];
+    let y = 0;
+    for (let i = 0; i < 10000; i++) {
+      y += Math.round(5 + Math.random() * (-5 - 5));
+      dataPoints.push({ y: y });
+    }
+    this.chart = new CanvasJS.Chart('chartContainer', {
+      zoomEnabled: true,
+      animationEnabled: true,
+      exportEnabled: true,
+      width: 700,
+      title: {
+        text: 'SMPP'
+      },
+      subtitles: [
+        {
+          text: 'Historical Stock Performance'
+        }
+      ],
+      axisX: {
+        title: 'Timestamp'
+      },
+      axisY: {
+        title: 'Index ($ USD)'
+      },
+      data: [
+        {
+          type: 'line',
+          dataPoints: dataPoints
+        }
+      ]
+    });
 
-  ngOnChanges() {
-    this.title = 'Stock Performance Data For ' + (this.symbol || 'SSMP');
+    this.chart.render();
+  }
+
+  ngOnChanges() {}
+
+  checkData() {
+    this.chart.options.title.text = this.symbol;
+    let time_series_key;
+    this.chart.options.data[0].dataPoints = [];
+    for (const key in this.stock_performance_data) {
+      if (key.match(/Time Series/)) {
+        time_series_key = this.stock_performance_data[key];
+      }
+    }
+    for (const entry in time_series_key) {
+      if (entry.match(/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/)) {
+        this.chart.options.data[0].dataPoints.push({
+          x: new Date(entry),
+          y: +time_series_key[entry]['4. close']
+        });
+      }
+    }
+    // console.log(time_series_data);
+    // this.chart.options.data = time_series_data;
+    this.chart.render();
+    console.log('rendered');
   }
 }
