@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { ApiInterfaceService } from '../api-interface.service';
+import { StockHistoryGraphComponent } from './stock-history-graph/stock-history-graph.component';
 
 @Component({
   selector: 'app-nn-input',
@@ -9,8 +10,11 @@ import { ApiInterfaceService } from '../api-interface.service';
   styleUrls: ['./nn-input.component.scss']
 })
 export class NnInputComponent implements OnInit {
+  @ViewChild(StockHistoryGraphComponent, { static: false })
+  private charting: StockHistoryGraphComponent;
+
   symbol = '';
-  stock_performance_data;
+  // stock_performance_data: JSON;
 
   query_params = new FormGroup({
     stock_symbol: new FormControl(''),
@@ -23,11 +27,12 @@ export class NnInputComponent implements OnInit {
 
   onSubmit() {
     this.symbol = this.query_params.get('stock_symbol').value;
-    this.stock_performance_data = this.api.pull_data(
-      'TIME_SERIES_DAILY',
-      this.symbol,
-      'full',
-      'csv'
-    );
+    this.api
+      .pull_data('TIME_SERIES_DAILY', this.symbol, 'full', 'JSON')
+      .then(data => {
+        this.charting.stock_performance_data = JSON.parse(data);
+        this.charting.symbol = this.symbol;
+        this.charting.checkData();
+      });
   }
 }

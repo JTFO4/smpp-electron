@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { resolve } from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,6 @@ export class ApiInterfaceService {
       if (key === 'Time Series (Daily)') {
         return data[key];
       }
-      2;
-    }
-  }
-
-  get_time_series_array(data: JSON) {
-    let time_series: string[][];
-    for (const key in data) {
     }
   }
 
@@ -28,8 +22,8 @@ export class ApiInterfaceService {
     stock_symbol: string,
     dataset_outputsize: string,
     dataset_type: string
-  ): JSON {
-    let api_response: JSON;
+  ): Promise<string> {
+    let api_response: string;
 
     const query_url =
       'https://www.alphavantage.co/query?' +
@@ -55,10 +49,15 @@ export class ApiInterfaceService {
     ping.onload = () => {
       console.log('Ping success!');
       api_response = ping.response;
-      console.log(this.get_time_series_JSON(api_response));
+      // console.log(api_response);
+      console.log(JSON.parse(api_response));
     };
     ping.send();
 
-    return api_response;
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(api_response);
+      }, 3000);
+    });
   }
 }
