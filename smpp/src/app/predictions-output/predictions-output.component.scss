@@ -1,0 +1,33 @@
+.output-card {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  height: 280px;
+  width: 1006px;
+}
+.prediction-tabs {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  width: 946px;
+}
+.stretched-tabs {
+  max-width: 976px;
+}
+.tab-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  height: 100px;
+  width: 911px;
+}
+
+.padded {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  padding-left: 30px;
+}

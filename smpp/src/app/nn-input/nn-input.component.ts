@@ -14,7 +14,6 @@ export class NnInputComponent implements OnInit {
   private charting: StockHistoryGraphComponent;
 
   symbol = '';
-  // stock_performance_data: JSON;
 
   query_params = new FormGroup({
     stock_symbol: new FormControl(''),

@@ -9,6 +9,7 @@ import {
   MatInputModule,
   MatProgressBarModule,
   MatSelectModule,
+  MatTabsModule,
   MatToolbarModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +22,12 @@ import { StockHistoryGraphComponent } from './nn-input/stock-history-graph/stock
 import { PredictionsOutputComponent } from './predictions-output/predictions-output.component';
 
 @NgModule({
-  declarations: [AppComponent, NnInputComponent, StockHistoryGraphComponent, PredictionsOutputComponent],
+  declarations: [
+    AppComponent,
+    NnInputComponent,
+    StockHistoryGraphComponent,
+    PredictionsOutputComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,6 +39,7 @@ import { PredictionsOutputComponent } from './predictions-output/predictions-out
     MatInputModule,
     MatProgressBarModule,
     MatSelectModule,
+    MatTabsModule,
     MatToolbarModule,
     LayoutModule,
     FormsModule,
